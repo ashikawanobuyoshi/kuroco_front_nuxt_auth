@@ -21,7 +21,7 @@ jobs:
       - name: "Get branch name and sha"
         id: get_branch
         run: |
-          PR=$(curl -H "X-Kuroco-Auth: token 62d12fca06bddd1096063654f46952cb" https://foto-studiomalias.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
+          PR=$(curl -H "X-Kuroco-Auth: token 155e236709d27f74d95e478a88735c84" https://studiomalias-net.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
           echo "branch=$(echo $PR | jq -r '.ref')" >> $GITHUB_OUTPUT
           echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
       - name: Checkout Repo
@@ -59,9 +59,9 @@ jobs:
       - name: Webhook
         uses: diverta/workflow-webhook@v3
         env:
-          webhook_url: "https://foto-studiomalias.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "62d12fca06bddd1096063654f46952cb"
-          data: '{"single_zip":"1","domain":"foto-studiomalias.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
+          webhook_url: "https://studiomalias-net.g.kuroco.app/direct/menu/github/"
+          webhook_secret: "155e236709d27f74d95e478a88735c84"
+          data: '{"single_zip":"1","domain":"studiomalias-net.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
           
   #for Push
   pushed_build:
@@ -100,7 +100,6 @@ jobs:
       - name: Webhook
         uses: diverta/workflow-webhook@v3
         env:
-          webhook_url: "https://foto-studiomalias.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "62d12fca06bddd1096063654f46952cb"
-          data: '{"single_zip":"1","domain":"foto-studiomalias.g.kuroco-front.app", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
-
+          webhook_url: "https://studiomalias-net.g.kuroco.app/direct/menu/github/"
+          webhook_secret: "155e236709d27f74d95e478a88735c84"
+          data: '{"single_zip":"1","domain":"studiomalias-net.g.kuroco-front.app", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
